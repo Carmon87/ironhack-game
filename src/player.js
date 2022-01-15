@@ -14,12 +14,11 @@ class Carmo {
             ctx.fillStyle = this.color
             ctx.fill();
         }
-        
     }
 
-    // clear() {
-    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    // }
+    clear() {
+        ctx.clearRect(0, 0, 800, 800);
+    }
 }
 
 let x = canvas.width/2;
@@ -38,7 +37,10 @@ player.draw()
 
 function update (){
     player.draw();
-    // player.clear();
+    
+    setTimeout(()=>{
+        player.clear()
+    }, 500);
     requestAnimationFrame(update)
 }
 
