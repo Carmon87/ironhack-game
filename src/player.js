@@ -113,9 +113,9 @@ function update (){
     exit.draw()
     collision(player,wall[i]) && console.log(collision(player, wall[i]))
     if (startGame && collision(player,wall[i])){
-        alert('you lose!')
+        alert('Oh no! Try again!')
         if (collision(player, exit)){
-        alert('You escaped the maze! Amazing!')}
+        alert('You escaped the maze! You are a-mazing!')}
        }
     player.draw();
     //exit.draw();
