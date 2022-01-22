@@ -79,7 +79,9 @@ const wall = [
     new Wall(450,340,176,30),
     new Wall(550,470,250,30)
 ]
-const exit = new Exit(655,670,120,100,'#FB0CA4')
+
+const exit = new Exit(655,670,120,100,'#FB0CA4');
+
 function getMousePos(canvas, evt) {
     let rect = canvas.getBoundingClientRect();
     return {
@@ -87,24 +89,25 @@ function getMousePos(canvas, evt) {
       y: evt.clientY - rect.top
     };
 }
+
 document.addEventListener('mousemove', (evt)=>{
     const mousePosition = getMousePos(canvas, evt)
     if (mousePosition.x >500 && mousePosition.x < 530 && mousePosition.y > 730 && mousePosition.y <760){
     console.log("startGame")
     startGame = true
     }
-    
-})
+});
 
 player.draw()
 let startGame = false
+
 canvas.addEventListener('mousemove', e => {
     if (startGame){
     player.x = e.offsetX;
     player.y = e.offsetY
     };
-    }
-)
+ }
+ )
 
 function update (){
 
@@ -117,12 +120,7 @@ function update (){
         if (collision(player, exit)){
         alert('You escaped the maze! You are a-mazing!')}
        }
-    player.draw();
-    //exit.draw();
-        
-    //  if (collision(player, exit)){
-    //    alert('Game over!")
-    //}
+    player.draw();        
     
 }
 setTimeout(()=>{
@@ -130,5 +128,5 @@ setTimeout(()=>{
 }, 500);
 requestAnimationFrame(update)
 }
-//console.log(collision(player,wall))
+
 update()
