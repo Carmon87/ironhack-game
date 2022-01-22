@@ -79,7 +79,7 @@ const wall = [
     new Wall(450,340,176,30),
     new Wall(550,470,250,30)
 ]
-const exit = new Exit(620,700,120,100)
+const exit = new Exit(655,670,120,100,'#FB0CA4')
 function getMousePos(canvas, evt) {
     let rect = canvas.getBoundingClientRect();
     return {
@@ -116,8 +116,6 @@ function update (){
         alert('you lose!')
         if (collision(player, exit)){
         alert('You escaped the maze! Amazing!')}
-
-        //document.getElementById("div").innerHTML = "You lose! Close this popup to try again";
        }
     player.draw();
     //exit.draw();
@@ -126,12 +124,11 @@ function update (){
     //    alert('Game over!")
     //}
     
-    setTimeout(()=>{
-        player.clear()
-    }, 500);
-    requestAnimationFrame(update)
-    
 }
+setTimeout(()=>{
+    player.clear()
+}, 500);
+requestAnimationFrame(update)
 }
 //console.log(collision(player,wall))
 update()
