@@ -20,8 +20,8 @@ return true
 }
 
 function collision(player, wall){
-    let distX = player.x - (wall.x-wall.width/2);
-    let distY = player.y - (wall.y-wall.height/2);
+    let distX = player.x - wall.x-wall.width/2;
+    let distY = player.y - wall.y-wall.height/2;
 
     if (distX > (wall.width/2 + player.radius)) { return false; }
     if (distY > (wall.height/2 + player.radius)) { return false; }
@@ -87,10 +87,10 @@ player.draw()
 
 function update (){
 
-   // for (let i=0; i<wall.length; i++){
-    wall[0].draw()
-    console.log(collision(player, wall[0]))
-    //}
+   for (let i=0; i<wall.length; i++){
+    wall[i].draw()
+    console.log(collision(player, wall))
+    }
     player.draw();
     // //exit.draw();
     //     if (collision(player,wall)){
