@@ -20,8 +20,8 @@ return true
 }
 
 function collision(player, wall){
-    let distX = player.x - wall.x-wall.width/2;
-    let distY = player.y - wall.y-wall.height/2;
+    let distX = Math.abs(player.x - wall.x-wall.width/2);
+    let distY = Math.abs(player.y - wall.y-wall.height/2);
 
     if (distX > (wall.width/2 + player.radius)) { return false; }
     if (distY > (wall.height/2 + player.radius)) { return false; }
@@ -41,14 +41,17 @@ class Circle {
         this.radius = radius;
         this.color = color;
         
+        
     }
     
     draw(){
         if (boundryCheck(this)){
             ctx.beginPath();
+            ctx.fillStyle = this.color;
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
             ctx.fill();            
-            }
+            ctx.fillStyle = '#0454a8'    
+        }
     }
 
     clear() {
@@ -89,13 +92,15 @@ function update (){
 
    for (let i=0; i<wall.length; i++){
     wall[i].draw()
-    console.log(collision(player, wall))
+    collision(player,wall[i]) && console.log(collision(player, wall[i]))
+    if (collision(player,wall[i])){
+        alert('You loooooose!')
+   }
+    
     }
     player.draw();
-    // //exit.draw();
-    //     if (collision(player,wall)){
-    //     alert("Game over!")
-    // }
+    //exit.draw();
+        
     //  if (collision(player, exit)){
     //    alert('Game over!")
     //}
