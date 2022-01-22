@@ -1,13 +1,15 @@
 class Exit{
-    constructor(x,y,width,height){
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height =height;
-        this.image = new Image()
-        this.image.src = "../src/Exit.png"
+        this.width = width
+        this.height = height
     }
+
     draw(){
-        ctx.drawImage(this.image,this.x,this.y)
+        ctx.beginPath()
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+        ctx.fillStyle = '#FB0CA4'
+        ctx.stroke();
     }
 }

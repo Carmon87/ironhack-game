@@ -89,7 +89,7 @@ function getMousePos(canvas, evt) {
 }
 document.addEventListener('mousemove', (evt)=>{
     const mousePosition = getMousePos(canvas, evt)
-    if (mousePosition.x >500 && mousePosition.x < 530 && mousePosition.y > 700 && mousePosition.y <730){
+    if (mousePosition.x >500 && mousePosition.x < 530 && mousePosition.y > 730 && mousePosition.y <760){
     console.log("startGame")
     startGame = true
     }
@@ -110,13 +110,15 @@ function update (){
 
    for (let i=0; i<wall.length; i++){
     wall[i].draw()
+    exit.draw()
     collision(player,wall[i]) && console.log(collision(player, wall[i]))
     if (startGame && collision(player,wall[i])){
         alert('you lose!')
+        if (collision(player, exit)){
+        alert('You escaped the maze! Amazing!')}
+
         //document.getElementById("div").innerHTML = "You lose! Close this popup to try again";
-   }
-    
-    }
+       }
     player.draw();
     //exit.draw();
         
@@ -128,8 +130,8 @@ function update (){
         player.clear()
     }, 500);
     requestAnimationFrame(update)
-
     
+}
 }
 //console.log(collision(player,wall))
 update()
