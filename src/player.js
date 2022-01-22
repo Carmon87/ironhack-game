@@ -60,10 +60,6 @@ class Circle {
 }
 
 
-canvas.addEventListener('mousemove', e => {
-    player.x = e.offsetX;
-    player.y = e.offsetY
-});
 
 const player = new Circle(500, 730, 30, '#A85804');
 const wall = [
@@ -72,7 +68,7 @@ const wall = [
     new Wall(0,500,300,30),
     new Wall(430,150,30,500),
     new Wall(300,380,30,180),
-    new Wall(100,270,267,30),
+    new Wall(100,270,266,30),
     new Wall(100,100,30,200),
     new Wall(180,300,30,130),
     new Wall(0,370,100,30),
@@ -80,21 +76,44 @@ const wall = [
     new Wall(350,130,160,30),
     new Wall(580,0,30,250),
     new Wall(690,100,30,300),
-    new Wall(450,340,177,30),
+    new Wall(450,340,176,30),
     new Wall(550,470,250,30)
 ]
-//const exit = new Exit(620,700,120,100)
+const exit = new Exit(620,700,120,100)
+function getMousePos(canvas, evt) {
+    let rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+}
+document.addEventListener('mousemove', (evt)=>{
+    const mousePosition = getMousePos(canvas, evt)
+    if (mousePosition.x >500 && mousePosition.x < 530 && mousePosition.y > 700 && mousePosition.y <730){
+    console.log("startGame")
+    startGame = true
+    }
+    
+})
 
 player.draw()
-//exit.draw();
+let startGame = false
+canvas.addEventListener('mousemove', e => {
+    if (startGame){
+    player.x = e.offsetX;
+    player.y = e.offsetY
+    };
+    }
+)
 
 function update (){
 
    for (let i=0; i<wall.length; i++){
     wall[i].draw()
     collision(player,wall[i]) && console.log(collision(player, wall[i]))
-    if (collision(player,wall[i])){
-        alert('You loooooose!')
+    if (startGame && collision(player,wall[i])){
+        alert('you lose!')
+        //document.getElementById("div").innerHTML = "You lose! Close this popup to try again";
    }
     
     }
